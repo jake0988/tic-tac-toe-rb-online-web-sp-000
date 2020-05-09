@@ -28,12 +28,15 @@ def valid_move?(board, index)
 end
 
 def turn(board)
+<<<<<<< HEAD
 
     if won?(board)
     return
   elsif over?(board)
       return
   end
+=======
+>>>>>>> 43b373e441b2fb5f26c1f993c5d7364416c738d7
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
@@ -41,15 +44,27 @@ def turn(board)
     cp = current_player(board)
     move(board, index, cp)
     display_board(board)
+<<<<<<< HEAD
     return
 
 
+=======
+  end
+  if over?(board)
+      return
+  elsif won?(board)
+    puts "Congratulations #{current_player}!"
+      return
+>>>>>>> 43b373e441b2fb5f26c1f993c5d7364416c738d7
   else
     turn(board)
   end
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43b373e441b2fb5f26c1f993c5d7364416c738d7
 def turn_count(board)
   i = 0
   count = 0
@@ -77,6 +92,7 @@ WIN_COMBINATIONS = [
 ]
 
 def current_player(board)
+<<<<<<< HEAD
 
 
 
@@ -86,6 +102,33 @@ def current_player(board)
   elsif num.odd?
     return "O"
   end
+=======
+  x = 0
+  o = 0
+  board.each do |count|
+    if count == "X"
+      x += 1
+    elsif count == "O"
+      o += 1
+    end
+  end
+    if x.even? && o.odd?
+      current_player = "O"
+    elsif x.odd? && o.even?
+      current_player = "X"
+    else
+      current_player = "X"
+    end
+    return current_player
+
+  #
+  # num = turn_count(board)
+  # if num.even?
+  #   return "X"
+  # elsif num.odd?
+  #   return "O"
+  # end
+>>>>>>> 43b373e441b2fb5f26c1f993c5d7364416c738d7
 end
 
 def won?(board)
@@ -191,6 +234,7 @@ end
 end
 
 def play(board)
+<<<<<<< HEAD
 i = 0
   if won?(board)
     puts "Congratulations #{winner(board)}!"
@@ -232,3 +276,30 @@ end
 #   end
 #
 # end
+=======
+    current_player = current_player(board)
+  if won?(board)
+    puts "Congratulations #{current_player}!"
+    return
+  elsif draw?(board)
+    puts "Cat's Game!"
+    return
+  end
+  turn(board)
+
+  if over?(board)
+    return board
+
+  elsif won?(board)
+
+    puts "Congratulations #{current_player}!"
+    return
+  elsif draw?(board)
+    puts "Cat's Game!"
+    return
+  else
+    play(board)
+  end
+
+end
+>>>>>>> 43b373e441b2fb5f26c1f993c5d7364416c738d7
